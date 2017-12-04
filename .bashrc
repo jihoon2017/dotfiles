@@ -140,6 +140,9 @@ export PATH=~/tools/etc:$PATH
 # universal-ctag
 [ -f ~/tools/ctags/bin/ctags ] && export PATH=~/tools/ctags/bin:$PATH
 
+# gnu global
+[ -f ~/tools/global/bin/gtags ] && export PATH=~/tools/global/bin:$PATH
+
 # fzf
 # --files: List files that would be searched but do not search
 # --no-ignore: Do not respect .gitignore, etc...
