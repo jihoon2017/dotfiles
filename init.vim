@@ -33,7 +33,8 @@ let g:limelight_conceal_ctermfg = 'gray'
 " --follow: Follow symlinks
 " --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
 " --color: Search color options
-command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+"command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow -g "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
 
 " for rg
 set grepprg=rg\ --vimgrep
@@ -62,6 +63,7 @@ elseif filereadable("./tags")
 	nmap <F4> :cs find s <C-R>=expand("<cword>")<CR><CR>
 	nmap <F5> :cs find c <C-R>=expand("<cword>")<CR><CR>
 	nmap <F6> :cs find t <C-R>=expand("<cword>")<CR><CR>
+
 endif
 
 " ctags and cscope
@@ -125,8 +127,8 @@ set wrap
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-"set expandtab
-set noexpandtab
+set expandtab
+"set noexpandtab
 set nobackup
 set noswapfile
 set visualbell
@@ -146,3 +148,5 @@ set cursorline
 "colorscheme seoul256
 set background=dark
 colorscheme solarized
+
+let &colorcolumn=join(range(101,999),",")
