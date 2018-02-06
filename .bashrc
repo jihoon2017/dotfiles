@@ -150,7 +150,8 @@ export PATH=~/tools/etc:$PATH
 # --follow: Follow symlinks
 # --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
 #export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
-export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+#export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+export FZF_DEFAULT_COMMAND='fd --type f --no-ignore --hidden --follow --exclude .git'
 
 # zsh
 [ -f /usr/bin/zsh ] && {
