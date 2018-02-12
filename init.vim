@@ -10,6 +10,9 @@ Plug 'kshenoy/vim-signature'
 Plug 'majutsushi/tagbar'
 Plug 'junegunn/seoul256.vim'
 Plug 'junegunn/limelight.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
 call plug#end()
 
@@ -108,7 +111,8 @@ nmap <Leader>ll :Lines<CR>
 " settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 set encoding=utf-8
-set fileencodings=utf-8,cp949
+"set fileencodings=utf-8,cp949
+set fileencodings=utf-8
 set ruler
 set cindent
 set smartindent
