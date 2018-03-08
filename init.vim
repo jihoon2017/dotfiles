@@ -52,6 +52,7 @@ if filereadable("./GTAGS")
 	nmap <F5> :Gtags -r <C-R>=expand("<cword>")<CR><CR>
 	nmap <F6> :Gtags -s <C-R>=expand("<cword>")<CR><CR>
 	nmap <F7> :Gtags -f %<CR>
+    let g:Gtags_No_Auto_Jump = 1
 elseif filereadable("./tags")
 	echo "tags file found"
     set tags=tags
@@ -66,7 +67,6 @@ elseif filereadable("./tags")
 	nmap <F4> :cs find s <C-R>=expand("<cword>")<CR><CR>
 	nmap <F5> :cs find c <C-R>=expand("<cword>")<CR><CR>
 	nmap <F6> :cs find t <C-R>=expand("<cword>")<CR><CR>
-
 endif
 
 " ctags and cscope
