@@ -14,6 +14,14 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+
 call plug#end()
 
 
@@ -154,3 +162,6 @@ set background=dark
 colorscheme solarized
 
 let &colorcolumn=join(range(101,999),",")
+
+" deoplete
+let g:deoplete#enable_at_startup = 1
