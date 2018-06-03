@@ -119,7 +119,7 @@ function gs() {
     current=${PWD}
     echo ${current}
 
-    for test in `fd -H -t d .git`
+    for test in `fd -HI -t d .git`
     do
         echo ${test}
         #echo ${test%/.git}
