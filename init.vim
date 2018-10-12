@@ -45,7 +45,9 @@ let g:limelight_conceal_ctermfg = 'gray'
 " --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
 " --color: Search color options
 "command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
-command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow -g "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+"command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow -g "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+"command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
 
 " for rg
 set grepprg=rg\ --vimgrep
@@ -56,10 +58,12 @@ if filereadable("./GTAGS")
     set cscopetag cscopeverbose
     set cscopeprg=gtags-cscope
 	cs add ./GTAGS
-	nmap <F4> :Gtags <C-R>=expand("<cword>")<CR><CR>
+	"nmap <F4> :Gtags <C-R>=expand("<cword>")<CR><CR>
 	nmap <F5> :Gtags -r <C-R>=expand("<cword>")<CR><CR>
-	nmap <F6> :Gtags -s <C-R>=expand("<cword>")<CR><CR>
-	nmap <F7> :Gtags -f %<CR>
+	"nmap <F6> :Gtags -s <C-R>=expand("<cword>")<CR><CR>
+	nmap <F6> :BTags <CR>
+	"nmap <F7> :Gtags -f %<CR>
+	nmap <F7> :Tags <CR>
     let g:Gtags_No_Auto_Jump = 1
 elseif filereadable("./tags")
 	echo "tags file found"
@@ -160,6 +164,8 @@ set cursorline
 "colorscheme seoul256
 set background=dark
 colorscheme solarized
+"colorscheme gruvbox
+"let g:gruvbox_italic = 1
 
 let &colorcolumn=join(range(101,999),",")
 
