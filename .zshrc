@@ -1,3 +1,5 @@
+#export TERM="xterm-256color"
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -8,10 +10,8 @@ export ZSH=$HOME/.oh-my-zsh
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 #ZSH_THEME="robbyrussell"
-#ZSH_THEME="refined"
 #ZSH_THEME="random"
-#ZSH_THEME="essembeh"
-
+#ZSH_THEME="powerlevel9k/powerlevel9k"
 ZSH_THEME="half-life"
 
 # Set list of themes to load
@@ -63,9 +63,7 @@ ZSH_THEME="half-life"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(
-  git
-)
+plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -114,7 +112,7 @@ function fshow() {
 FZF-EOF"
 }
 
-function gs() {
+function gits() {
 
     current=${PWD}
     echo ${current}
@@ -129,4 +127,20 @@ function gs() {
     done
 }
 
+function gitp() {
+
+    current=${PWD}
+    echo ${current}
+
+    for test in `fd -HI -t d .git`
+    do
+        echo ${test}
+        #echo ${test%/.git}
+        cd ${test%/.git}
+        git pull
+        cd ${current}
+    done
+}
+
 [ -f ~/tools/zsh-interactive-cd.plugin.zsh ] && source ~/tools/zsh-interactive-cd.plugin.zsh
+
