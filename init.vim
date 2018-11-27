@@ -13,6 +13,7 @@ Plug 'junegunn/limelight.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'morhetz/gruvbox.vim'
 
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -47,7 +48,10 @@ let g:limelight_conceal_ctermfg = 'gray'
 "command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
 "command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow -g "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
 "command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
-command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+"command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --follow --glob "!.git/*" -g "!*.class" -g "!tags" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+"let g:fzf_layout = { 'window': 'enew' }
+let $FZF_DEFAULT_COMMAND='fd --type f --follow --exclude .git'
 
 " for rg
 set grepprg=rg\ --vimgrep
@@ -59,6 +63,7 @@ if filereadable("./GTAGS")
     set cscopeprg=gtags-cscope
 	cs add ./GTAGS
 	"nmap <F4> :Gtags <C-R>=expand("<cword>")<CR><CR>
+	"nmap <F4> :Gtags -r <C-R>=expand("<cword>")<CR><CR>
 	nmap <F5> :Gtags -r <C-R>=expand("<cword>")<CR><CR>
 	"nmap <F6> :Gtags -s <C-R>=expand("<cword>")<CR><CR>
 	nmap <F6> :BTags <CR>
@@ -163,9 +168,9 @@ set cursorline
 "let g:seoul256_background=233
 "colorscheme seoul256
 set background=dark
-colorscheme solarized
-"colorscheme gruvbox
-"let g:gruvbox_italic = 1
+"colorscheme solarized
+colorscheme gruvbox
+let g:gruvbox_gruvbox_italic = 1
 
 let &colorcolumn=join(range(101,999),",")
 
