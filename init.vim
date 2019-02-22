@@ -14,6 +14,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'morhetz/gruvbox.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -56,6 +58,19 @@ let $FZF_DEFAULT_COMMAND='fd --type f --follow --exclude .git'
 " for rg
 set grepprg=rg\ --vimgrep
 
+" deoplete
+"let g:python3_host_prog = '/home/jihoon.lee/tools/python-3.6.5/bin/python3'
+let g:deoplete#enable_at_startup = 1
+
+" vim-airline
+let g:airline#extensions#tabline#enabled = 1 " turn on buffer list
+let g:airline_powerline_fonts = 1
+set laststatus=2
+let g:airline#extensions#tabline#fnamemod = ':t' " name only in tabline
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" key map and tags
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " gtags
 if filereadable("./GTAGS")
 	echo "GTAGS file found"
@@ -98,9 +113,6 @@ endif
 "    set csverb
 "endif
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" key map
-""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <F3> :Find <C-R>=expand("<cword>")<CR><CR>
 
 " for gtags
@@ -174,5 +186,3 @@ let g:gruvbox_gruvbox_italic = 1
 
 let &colorcolumn=join(range(101,999),",")
 
-" deoplete
-let g:deoplete#enable_at_startup = 1
