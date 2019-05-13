@@ -17,6 +17,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 "Plug 'morhetz/gruvbox.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 't9md/vim-quickhl'
 
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -137,7 +138,12 @@ nmap <Leader>bb :Buffers<CR>
 nmap <Leader>ll :Lines<CR>
 "nmap <Leader>fc :Colors<CR>
 
-
+nmap <Space>m <Plug>(quickhl-manual-this)
+xmap <Space>m <Plug>(quickhl-manual-this)
+nmap <F2> <Plug>(quickhl-manual-toggle)
+xmap <F2> <Plug>(quickhl-manual-toggle)
+nmap <Space>M <Plug>(quickhl-manual-reset)
+xmap <Space>M <Plug>(quickhl-manual-reset)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 " settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
