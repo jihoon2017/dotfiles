@@ -16,6 +16,8 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'morhetz/gruvbox.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 't9md/vim-quickhl'
+Plug 'sheerun/vim-polyglot'
 
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -51,7 +53,8 @@ let g:limelight_conceal_ctermfg = 'gray'
 "command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow -g "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
 "command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
 "command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
-command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --follow --glob "!.git/*" -g "!*.class" -g "!tags" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+"command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --follow --glob "!.git/*" -g "!*.class" -g "!tags" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --follow --glob "!.git/*" -g "!*.class" -g "!tags" -g "!*.d" -g "!*.d.*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
 "let g:fzf_layout = { 'window': 'enew' }
 let $FZF_DEFAULT_COMMAND='fd --type f --follow --exclude .git'
 
@@ -135,7 +138,12 @@ nmap <Leader>bb :Buffers<CR>
 nmap <Leader>ll :Lines<CR>
 "nmap <Leader>fc :Colors<CR>
 
-
+nmap <Space>m <Plug>(quickhl-manual-this)
+xmap <Space>m <Plug>(quickhl-manual-this)
+nmap <F2> <Plug>(quickhl-manual-toggle)
+xmap <F2> <Plug>(quickhl-manual-toggle)
+nmap <Space>M <Plug>(quickhl-manual-reset)
+xmap <Space>M <Plug>(quickhl-manual-reset)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 " settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -146,7 +154,10 @@ set ruler
 set cindent
 set smartindent
 "set autoindent
-set nu
+" absolute number
+"set nu
+" absolute + relative number
+set nu rnu
 set hlsearch
 set incsearch
 set ignorecase
