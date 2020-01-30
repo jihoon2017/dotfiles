@@ -18,6 +18,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 't9md/vim-quickhl'
 Plug 'sheerun/vim-polyglot'
+Plug 'dracula/vim', {'as':'dracula'}
 
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
