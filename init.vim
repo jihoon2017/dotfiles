@@ -136,6 +136,7 @@ nmap <F9> :TagbarToggle<CR>
 nmap <Leader>ff :Files<CR>
 nmap <Leader>bb :Buffers<CR>
 nmap <Leader>ll :Lines<CR>
+nmap <Leader>mm :Marks<CR>
 "nmap <Leader>fc :Colors<CR>
 
 nmap <Space>m <Plug>(quickhl-manual-this)
