@@ -130,6 +130,7 @@ export PATH=~/tools/etc:$PATH
 
 # ripgrep
 [ -f ~/tools/ripgrep/rg ] && export PATH=~/tools/ripgrep:$PATH
+alias rgf='rg --no-ignore'
 
 # tig
 [ -f ~/tools/tig/bin/tig ] && export PATH=~/tools/tig/bin:$PATH
@@ -152,6 +153,38 @@ export PATH=~/tools/etc:$PATH
 #export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 #export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 export FZF_DEFAULT_COMMAND='fd --type f --no-ignore --hidden --follow --exclude .git'
+
+# for git status in sub directories
+function gits() {
+
+    current=${PWD}
+    echo ${current}
+
+    for test in `fd -HI -t d .git`
+    do
+        echo ${test}
+        #echo ${test%/.git}
+        cd ${test%/.git}
+        git status
+        cd ${current}
+    done
+}
+
+# for git pull in sub directories
+function gitp() {
+
+    current=${PWD}
+    echo ${current}
+
+    for test in `fd -HI -t d .git`
+    do
+        echo ${test}
+        #echo ${test%/.git}
+        cd ${test%/.git}
+        git status
+        cd ${current}
+    done
+}
 
 # zsh
 [ -f /usr/bin/zsh ] && {
