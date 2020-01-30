@@ -100,6 +100,9 @@ source $ZSH/oh-my-zsh.sh
 
 alias rgf='rg --no-ignore'
 
+# for vim colorscheme
+alias tmux='tmux -2'
+
 # fshow - git commit browser
 function fshow() {
   git log --graph --color=always \
