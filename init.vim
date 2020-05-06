@@ -18,6 +18,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 't9md/vim-quickhl'
 Plug 'sheerun/vim-polyglot'
+Plug 'dracula/vim', {'as':'dracula'}
 Plug 'frazrepo/vim-rainbow'
 
 if has('nvim')
