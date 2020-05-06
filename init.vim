@@ -18,6 +18,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 't9md/vim-quickhl'
 Plug 'sheerun/vim-polyglot'
+Plug 'frazrepo/vim-rainbow'
 
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -70,6 +71,9 @@ let g:airline#extensions#tabline#enabled = 1 " turn on buffer list
 let g:airline_powerline_fonts = 1
 set laststatus=2
 let g:airline#extensions#tabline#fnamemod = ':t' " name only in tabline
+
+" vim-rainbow
+let g:rainbow_active = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 " key map and tags
