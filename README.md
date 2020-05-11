@@ -1,4 +1,2 @@
 # dotfiles
 dot files
-
-test
