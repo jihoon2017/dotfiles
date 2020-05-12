@@ -150,6 +150,12 @@ nmap <F2> <Plug>(quickhl-manual-toggle)
 xmap <F2> <Plug>(quickhl-manual-toggle)
 nmap <Space>M <Plug>(quickhl-manual-reset)
 xmap <Space>M <Plug>(quickhl-manual-reset)
+
+" for window navigation
+nmap <C-h> <C-W>h
+nmap <C-j> <C-W>j
+nmap <C-k> <C-W>k
+nmap <C-l> <C-W>l
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 " settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
