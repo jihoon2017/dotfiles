@@ -20,6 +20,8 @@ Plug 't9md/vim-quickhl'
 Plug 'sheerun/vim-polyglot'
 Plug 'dracula/vim', {'as':'dracula'}
 Plug 'frazrepo/vim-rainbow'
+Plug 'francoiscabrol/ranger.vim'
+Plug 'rbgrouleff/bclose.vim'
 
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -76,6 +78,7 @@ let g:airline#extensions#tabline#fnamemod = ':t' " name only in tabline
 " vim-rainbow
 let g:rainbow_active = 1
 
+let g:ranger_map_keys = 0
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 " key map and tags
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -143,6 +146,7 @@ nmap <Leader>bb :Buffers<CR>
 nmap <Leader>ll :Lines<CR>
 nmap <Leader>mm :Marks<CR>
 "nmap <Leader>fc :Colors<CR>
+nmap <Leader>rr :Ranger<CR>
 
 nmap <Space>m <Plug>(quickhl-manual-this)
 xmap <Space>m <Plug>(quickhl-manual-this)
@@ -150,9 +154,17 @@ nmap <F2> <Plug>(quickhl-manual-toggle)
 xmap <F2> <Plug>(quickhl-manual-toggle)
 nmap <Space>M <Plug>(quickhl-manual-reset)
 xmap <Space>M <Plug>(quickhl-manual-reset)
+
+" for window navigation
+nmap <C-h> <C-W>h
+nmap <C-j> <C-W>j
+nmap <C-k> <C-W>k
+nmap <C-l> <C-W>l
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 " settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
+syntax on
 set encoding=utf-8
 "set fileencodings=utf-8,cp949
 set fileencodings=utf-8
@@ -189,6 +201,8 @@ set showcmd
 set list listchars=tab:→\ ,trail:·,precedes:«,extends:»,eol:★
 set cursorcolumn
 set cursorline
+" for large file syntax highlight
+set redrawtime=10000
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 " color scheme
@@ -201,5 +215,8 @@ set background=dark
 colorscheme gruvbox
 let g:gruvbox_gruvbox_italic = 1
 
-let &colorcolumn=join(range(101,999),",")
+"let &colorcolumn=join(range(101,999),",")
+set colorcolumn=100
+"highlight ColorColumn guibg=grey
+highlight ColorColumn ctermbg=238
 
