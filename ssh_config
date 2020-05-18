@@ -1,0 +1,17 @@
+host gitolite.bundang gitolite.bundang.ap.thmulti.com 10.17.160.91
+user git
+port 22
+hostname 10.17.160.91
+IdentityFile ~/.ssh/leejihoon
+
+host 10.17.160.240
+user git
+port 22
+hostname 10.17.160.240
+IdentityFile ~/.ssh/leejihoon
+
+#host 10.17.160.85
+host *
+ForwardX11Trusted yes
+ForwardX11 yes
+XAuthLocation /opt/X11/bin/xauth
