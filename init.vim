@@ -21,6 +21,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'dracula/vim', {'as':'dracula'}
 Plug 'frazrepo/vim-rainbow'
 Plug 'francoiscabrol/ranger.vim'
+" this is dependency of ranger.vim
 Plug 'rbgrouleff/bclose.vim'
 
 if has('nvim')
@@ -78,7 +79,9 @@ let g:airline#extensions#tabline#fnamemod = ':t' " name only in tabline
 " vim-rainbow
 let g:rainbow_active = 1
 
+" don't use default mapping of ranger.vim
 let g:ranger_map_keys = 0
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 " key map and tags
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -165,6 +168,8 @@ nmap <C-l> <C-W>l
 " settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 syntax on
+filetype on
+set nocompatible
 set encoding=utf-8
 "set fileencodings=utf-8,cp949
 set fileencodings=utf-8
@@ -203,6 +208,7 @@ set cursorcolumn
 set cursorline
 " for large file syntax highlight
 set redrawtime=10000
+set clipboard=unnamedplus,unnamed
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 " color scheme
