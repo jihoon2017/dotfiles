@@ -1,9 +1,11 @@
 " vim-plug
 call plug#begin('~/.config/nvim/plugged')
 
+Plug 'gruvbox-community/gruvbox'
 Plug 'dracula/vim',{'as':'dracula'}
 Plug 'altercation/vim-colors-solarized'
 Plug 'lifepillar/vim-solarized8'
+Plug 'joshdick/onedark.vim'
 Plug '~/.fzf'
 Plug 'junegunn/fzf.vim'
 "Plug 'scrooloose/nerdtree'
@@ -23,6 +25,7 @@ Plug 'francoiscabrol/ranger.vim'
 " this is dependency of ranger.vim
 Plug 'rbgrouleff/bclose.vim'
 Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 
 call plug#end()
 
@@ -45,7 +48,8 @@ call plug#end()
 "command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
 "command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow -g "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
 "command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --follow --glob "!.git/*" -g "!*.class" -g "!tags" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
-command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --follow --glob "!.git/*" -g "!*.class" -g "!tags" -g "!*.d" -g "!*.d.*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+"command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --follow --glob "!.git/*" -g "!*.class" -g "!tags" -g "!*.d" -g "!*.d.*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --follow --glob "!.git/*" --glob "!*.class" --glob "!tags" --glob "!GTAGS" --glob "!GPATH" --glob "!GRTAGS" --glob "!*.d" --glob "!*.d.*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
 "let g:fzf_layout = { 'window': 'enew' }
 let $FZF_DEFAULT_COMMAND='fd --type f --follow --exclude .git'
 
@@ -67,7 +71,7 @@ set laststatus=2
 let g:airline#extensions#tabline#fnamemod = ':t' " name only in tabline
 
 " vim-rainbow
-let g:rainbow_active = 1
+"let g:rainbow_active = 1
 
 " don't use default mapping of ranger.vim
 let g:ranger_map_keys = 0
@@ -116,7 +120,7 @@ elseif filereadable("./tags")
 endif
 
 nmap <F3> :Find <C-R>=expand("<cword>")<CR><CR>
-nmap <F8> :NERDTreeToggle<CR>
+"nmap <F8> :NERDTreeToggle<CR>
 nmap <F9> :TagbarToggle<CR>
 "nmap <F9> :bn<CR>
 
@@ -136,6 +140,84 @@ nmap <Space>M <Plug>(quickhl-manual-reset)
 xmap <Space>M <Plug>(quickhl-manual-reset)
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
+" for LeaderF
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:Lf_UseVersionControlTool = 0
+" below two options for don't use cache
+let g:Lf_UseCache = 0
+let g:Lf_UseMemoryCache = 0
+" enable popup
+let g:Lf_WindowPosition = 'popup'
+" preview enable
+let g:Lf_PreviewInPopup = 1
+" preview enable option
+let g:Lf_PreviewResult = {
+        \ 'File': 0,
+        \ 'Buffer': 0,
+        \ 'Mru': 0,
+        \ 'Tag': 0,
+        \ 'BufTag': 1,
+        \ 'Function': 1,
+        \ 'Line': 0,
+        \ 'Colorscheme': 0,
+        \ 'Rg': 0,
+        \ 'Gtags': 1
+        \}
+" ignore
+let g:Lf_WildIgnore = {
+        \ 'dir': ['.svn','.git','.hg'],
+        \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]','*.d','*.o','*.class']
+        \}
+" if there are .git directories in subdirectories from project root, it makes
+" hard to find global reference
+let g:Lf_RootMarkers = ['.project', '.project2']
+" disable auto generate, should use `Leaderf gtags --update` manually
+let g:Lf_GtagsAutoGenerate = 0
+" set gtags frontend
+let g:Lf_Gtagslabel = 'native-pygments'
+" store gtags output files in project root
+let Lf_GtagsStoreInProject = 1
+" rg filters
+let g:Lf_RgConfig = [
+        \ "--max-columns=150",
+        \ "--glob=!build/*",
+        \ "--glob=!*.class",
+        \ "--glob=!*.d",
+        \ "--glob=!git/*",
+        \ "--hidden"
+        \ ]
+" set dev icons, but don't need (default is 1)
+"let g:Lf_ShowDevIcons = 1
+" this makes preview display abnormal
+"set ambiwidth=double
+
+" remove shortcut for file search
+"noremap <Leader>ff :<C-U><C-R>=printf("Leaderf file --nameOnly %s", "")<CR><CR>
+let g:Lf_ShortcutF = ""
+" remove shortcut for buffer search
+"noremap <Leader>fb :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
+let g:Lf_ShortcutB = ""
+" search tags in current buffer
+"noremap <Leader>ft :<C-U><C-R>=printf("Leaderf bufTag %s", "")<CR><CR>
+noremap <F6> :<C-U><C-R>=printf("Leaderf bufTag %s", "")<CR><CR>
+" search text in current buffer 
+"noremap <Leader>fl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
+" update gtags
+noremap <Leader>fu :<C-U><C-R>=printf("Leaderf gtags --update")<CR><CR>
+" search tags in all symbols of project
+"noremap <Leader>fa :Leaderf gtags<CR>
+noremap <F7> :Leaderf gtags<CR>
+" search reference
+"noremap <Leader>fr :<C-U><C-R>=printf("Leaderf gtags -r %s", expand("<cword>"))<CR><CR>
+noremap <F5> :<C-U><C-R>=printf("Leaderf gtags -r %s", expand("<cword>"))<CR><CR>
+" search definition
+"noremap <Leader>fd :<C-U><C-R>=printf("Leaderf gtags -d %s", expand("<cword>"))<CR><CR>
+" search tags by context
+noremap <Leader>fd :<C-U><C-R>=printf("Leaderf gtags --by-context")<CR><CR>
+" search text in project
+"noremap <Leader>fg :<C-U><C-R>=printf("Leaderf rg -e %s ", expand("<cword>"))<CR><CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 syntax on
@@ -152,7 +234,8 @@ set smartindent
 "set nu
 " absolute + relative number
 set nu rnu
-set hlsearch
+"set hlsearch
+set nohlsearch
 set incsearch
 set ignorecase
 set smartcase
@@ -191,9 +274,10 @@ set clipboard=unnamedplus,unnamed
 "colorscheme gruvbox
 "let g:gruvbox_gruvbox_italic = 1
 set termguicolors
-set background=dark
+"set background=dark
 "colorscheme solarized8
-colorscheme dracula
+"colorscheme dracula
+colorscheme onedark
 
 set colorcolumn=100
 "let &colorcolumn=join(range(101,999),",")
@@ -211,3 +295,4 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 "  set t_Sf=^[[3%dm
 "endif
 """"""""""""""""""""""""""""""""""""""""""""
+
